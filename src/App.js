@@ -1,23 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import SearchBar from './components/SearchBar';
+import UserCard from './components/UserCard'
+import './App.css'
 
 function App() {
+  const [userData, setUserData] = useState(null);
+
+  const handleSearch = (data) => {
+    setUserData(data);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='App'>
+      <h1>GitHub User Search</h1>
+      <SearchBar onSearch={handleSearch} />
+      {userData && <UserCard userData={userData}/>}
     </div>
   );
 }
